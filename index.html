@@ -1,38 +1,36 @@
-
-
-
-
 <!doctype html>
 <html lang="en">
   <head>
-
-
-
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Supernatural The Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <audio id="bg-music" src="audio/SupernaturalTheme.mp3" loop></audio>
+    <audio
+      id="bg-music"
+      src="audio/SupernaturalTheme.mp3"
+      autoplay
+      loop
+    ></audio>
 
-    <div id="intro-screen1" class="screen active">
+    <div id="intro-screen1" class="intro-screen1">
       <h1 id="story-intro1">
         Dad`s on a hunting trip and he hasn`t been home in a few days."
       </h1>
-      <button id="next-page">Next</button>
+      <button id="next-button1">Next</button>
     </div>
 
-    <div id="intro-screen2" class="screen">
+    <div id="intro-screen2" class="intro-screen2">
       <h1 id="story-intro2">"Jess, excuse us!</h1>
+      <button id="next-button2">Next</button>
     </div>
 
-    <div id="game-screen" class="screen"></div>
+    <div id="game-screen" class="game-screen"></div>
 
-    <div id="gameover-screen" class="screen"></div>
+    <div id="gameover-screen" class="gameover-screen"></div>
 
-    <div id="win-screen" class="screen"></div>
+    <div id="win-screen" class="win-screen"></div>
 
     <script src="../JS/index.js"></script>
   </body>
