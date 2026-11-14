@@ -7,12 +7,8 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <audio
-      id="bg-music"
-      src="audio/SupernaturalTheme.mp3"
-      autoplay
-      loop
-    ></audio>
+    <!-- <audio id="music" src="../audio/SupernaturalTheme.mp3" autoplay loop></audio> -->
+    <!-- <object id="music" data="../audio/SupernaturalTheme.mp3" autoplay loop></object> (audio is better tha object!) -->
 
     <div id="intro-screen1" class="intro-screen1">
       <h1 id="story-intro1">
@@ -26,12 +22,17 @@
       <button id="next-button2">Next</button>
     </div>
 
-    <div id="game-screen" class="game-screen"></div>
+    <div id="game-screen" class="game-screen">
+      <div id="floor" class="floor"></div>
+      <!-- <div id="player" class="player"></div> -->
+    </div>
 
     <div id="gameover-screen" class="gameover-screen"></div>
 
     <div id="win-screen" class="win-screen"></div>
 
+    <script src="../JS/player.js"></script>
     <script src="../JS/index.js"></script>
+    
   </body>
 </html>
