@@ -6,6 +6,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url("../images/Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  color: #e8e0d0;
 }
 
 /* #music {
@@ -13,12 +20,23 @@ body {
     visibility: hidden;
 } */
 
-
+.intro-screen1,
+.intro-screen2,
+.start-game-screen,
+.game-screen,
+.gameover-screen,
+.win-screen {
+  background-color: rgba(12, 12, 16, 0.82);
+  border: 2px solid #8b1a1a;
+  backdrop-filter: blur(6px);
+  box-sizing: border-box;
+  padding: 40px;
+  text-align: center;
+}
 
 .intro-screen1 {
   width: 70vw;
   height: 60vh;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,17 +46,43 @@ body {
 .intro-screen2 {
   width: 70vw;
   height: 60vh;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.choice {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #8b1a1a;
+    bottom:62px;
+    
+}
+
+#choice1 {
+    left: 55px
+}
+
+#choice2 {
+    right: 55px
+}
+
+.start-game-screen {
+  width: 70vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 .game-screen {
   width: 70vw;
   height: 60vh;
-  border: 2px solid black;
   display: flex;
   position: relative;
 }
@@ -52,12 +96,9 @@ body {
     background-color: lightgreen ;
 }
 
-
-
 .gameover-screen {
   width: 70vw;
   height: 60vh;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,14 +108,23 @@ body {
 .win-screen {
   width: 70vw;
   height: 60vh;
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+button {
+  font-family: inherit;
+  background-color: #8b1a1a;
+  color: #e8e0d0;
+  border: 2px solid #e8e0d0;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
 .intro-screen2,
+.start-game-screen,
 .game-screen,
 .gameover-screen,
 .win-screen {
