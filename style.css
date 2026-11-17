@@ -87,6 +87,7 @@ body {
   position: relative;
 }
 
+
 .floor {
     position: absolute;
     bottom: 0;
@@ -122,6 +123,17 @@ button {
   padding: 8px 20px;
   cursor: pointer;
 }
+
+.game-screen,
+.gameover-screen,
+.win-screen {
+  width: 70vw;
+  height: 60vh;
+  display: flex;
+  position: relative;
+  overflow: hidden; 
+}
+
 
 .intro-screen2,
 .start-game-screen,

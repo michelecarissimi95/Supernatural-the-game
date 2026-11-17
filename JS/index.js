@@ -20,10 +20,18 @@ const startGameScreen = document.getElementById(`start-game-screen`);
 //     music = ``
 // }
 
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    player.jump();
+  }
+});
+
 nextButton1.addEventListener(`click`, (()=>{
     screenOne.style.display = `none`;
     screenTwo.style.display = `flex`;
 }))
+
+
 
 nextButton2.addEventListener(`click`,(()=>{
     screenTwo.style.display = `none`;
@@ -48,3 +56,19 @@ document.addEventListener(`keydown`, (event) => {
   }
 });
 
+const enemies = [];
+
+setInterval(() => {
+  enemies.push(new Enemy());
+}, 2000);
+
+setInterval(() => {
+  enemies.forEach((enemy, index) => {
+    enemy.move();
+
+    if (enemy.x + enemy.width < 0) {
+      enemy.element.remove(); 
+      enemies.splice(index, 1); 
+    }
+  });
+}, 20);
