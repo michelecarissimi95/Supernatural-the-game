@@ -60,6 +60,17 @@ body {
   position: relative;
 }
 
+
+.gameover-screen {
+  display: flex;
+  background-image: url("./images/deanhell.png");
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
 .start-game-screen h1 {
   font-size: clamp(1.5rem, 4vw, 2.75rem);
   margin: 0 0 6px;
