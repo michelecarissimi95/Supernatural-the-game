@@ -2,6 +2,7 @@ class Enemy {
   constructor() {
     this.gameScreen = document.querySelector(".game-screen");
     this.element = document.createElement("div");
+    this.image = "images/vampire.png";
 
     const stageWidth = Math.max(this.gameScreen.clientWidth, 300);
     const floor = this.gameScreen.querySelector(".floor");
@@ -18,7 +19,10 @@ class Enemy {
     this.element.style.height = `${this.height}px`;
     this.element.style.bottom = `${this.y}px`;
     this.element.style.left = `${this.x}px`;
-    this.element.style.backgroundColor = "red";
+    this.element.style.backgroundImage = `url("${this.image}")`;
+    this.element.style.backgroundPosition = "center";
+    this.element.style.backgroundSize = "cover";
+    this.element.style.backgroundRepeat = "no-repeat";
 
     this.gameScreen.appendChild(this.element);
   }

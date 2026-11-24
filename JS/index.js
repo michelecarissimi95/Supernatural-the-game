@@ -7,6 +7,16 @@ const startGameScreen = document.getElementById("start-game-screen");
 const gameScreen = document.getElementById("game-screen");
 const gameOverScreen = document.getElementById("gameover-screen");
 const winScreen = document.getElementById("win-screen");
+const MAX_LIVES = 3;
+const player = new Player();
+const enemies = [];
+
+
+
+let lives = MAX_LIVES;
+let spawnTimer = null;
+let loopIntervalId = null;
+let isGameActive = false;
 
 const allScreens = [
   screenOne,
@@ -28,20 +38,13 @@ function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const MAX_LIVES = 3;
 
-const player = new Player();
-const enemies = [];
 
 const livesHud = document.createElement("div");
 livesHud.className = "lives-hud";
 gameScreen.appendChild(livesHud);
 
-let lives = MAX_LIVES;
 
-let spawnTimer = null;
-let loopIntervalId = null;
-let isGameActive = false;
 
 function renderLives() {
   const filledHearts = "♥".repeat(Math.max(0, lives));

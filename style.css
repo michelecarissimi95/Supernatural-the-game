@@ -64,10 +64,11 @@ body {
 .gameover-screen {
   display: flex;
   background-image: url("./images/deanhell.png");
+  background-size: cover;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
 }
 
 
