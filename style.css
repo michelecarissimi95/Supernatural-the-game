@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
+:root {
+  --floor-height: clamp(44px, 10vh, 72px);
+}
+
 body {
   font-family: "Cinzel Decorative";
   display: flex;
@@ -10,15 +14,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
+  padding: 12px;
+  box-sizing: border-box;
   color: #e8e0d0;
 }
-
-/* #music {
-    display: block;
-    visibility: hidden;
-} */
 
 .intro-screen1,
 .intro-screen2,
@@ -30,49 +31,28 @@ body {
   border: 2px solid #8b1a1a;
   backdrop-filter: blur(6px);
   box-sizing: border-box;
-  padding: 40px;
+  padding: clamp(16px, 4vw, 40px);
   text-align: center;
+  width: min(92vw, 960px);
+  height: clamp(360px, 65dvh, 620px);
 }
 
-.intro-screen1 {
-  width: 70vw;
-  height: 60vh;
+.intro-screen1,
+.intro-screen2,
+.gameover-screen,
+.win-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.intro-screen2 {
-  width: 70vw;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.choice {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 2px solid #8b1a1a;
-    bottom:62px;
-    
-}
-
-#choice1 {
-    left: 55px
-}
-
-#choice2 {
-    right: 55px
+.intro-screen1 h1,
+.intro-screen2 h1 {
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
 }
 
 .start-game-screen {
-  width: 70vw;
-  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,60 +60,81 @@ body {
   position: relative;
 }
 
-.game-screen {
-  width: 70vw;
-  height: 60vh;
-  display: flex;
-  position: relative;
+.start-game-screen h1 {
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  margin: 0 0 6px;
 }
 
-
-.floor {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: lightgreen ;
+.start-game-screen h3 {
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  margin: 0 0 12px;
 }
 
-.gameover-screen {
-  width: 70vw;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.start-game-screen p {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  margin: 4px 0;
+  max-width: 52ch;
 }
 
-.win-screen {
-  width: 70vw;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.choice {
+  position: absolute;
+  width: clamp(64px, 12vw, 120px);
+  height: clamp(64px, 12vw, 120px);
+  border-radius: 50%;
+  border: 2px solid #8b1a1a;
+  bottom: clamp(16px, 6vh, 62px);
 }
 
-button {
-  font-family: inherit;
-  background-color: #8b1a1a;
-  color: #e8e0d0;
-  border: 2px solid #e8e0d0;
-  padding: 8px 20px;
-  cursor: pointer;
+#choice1 {
+  left: clamp(16px, 5vw, 55px);
+}
+
+#choice2 {
+  right: clamp(16px, 5vw, 55px);
+}
+
+.lives-hud {
+  position: absolute;
+  top: clamp(10px, 2.5vh, 20px);
+  left: clamp(12px, 3vw, 24px);
+  z-index: 10;
+  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+  color: #ff6b6b;
+  background-color: rgba(12, 12, 16, 0.75);
+  border: 1px solid #8b1a1a;
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 
 .game-screen,
 .gameover-screen,
 .win-screen {
-  width: 70vw;
-  height: 60vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
+.floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--floor-height);
+  background-color: lightgreen;
+}
+
+button {
+  font-family: inherit;
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  background-color: #8b1a1a;
+  color: #e8e0d0;
+  border: 2px solid #e8e0d0;
+  padding: clamp(6px, 1vh, 10px) clamp(14px, 2.5vw, 24px);
+  cursor: pointer;
+}
 
 .intro-screen2,
 .start-game-screen,
@@ -143,11 +144,8 @@ button {
   display: none;
 }
 
-/* .player {
-  width: 60px;
-  height: 60px;
-  border: solid red;
-  position: absolute;
-  left: 0;
-  bottom:60px;
-} */
+@media (max-width: 600px) {
+  .choice {
+    bottom: 12px;
+  }
+}
