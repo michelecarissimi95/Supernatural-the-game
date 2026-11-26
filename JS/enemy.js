@@ -12,7 +12,7 @@ class Enemy {
     this.height = this.width;
     this.x = this.gameScreen.clientWidth;
     this.y = Math.max(0, floorHeight - 2);
-    this.speed = Math.max(3, Math.round(stageWidth * 0.005));
+    this.speed = Math.max(2, Math.round(stageWidth * 0.0042));
 
     this.element.style.position = "absolute";
     this.element.style.width = `${this.width}px`;

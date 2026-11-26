@@ -2,7 +2,7 @@ class Bobby {
   constructor() {
     this.gameScreen = document.querySelector(".game-screen");
     this.element = document.createElement("div");
-    this.image = "images/bobby.png";
+    this.image = "images/Bobby.png";
     this.isFriendly = true;
 
     const stageWidth = Math.max(this.gameScreen.clientWidth, 300);

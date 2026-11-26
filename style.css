@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
 
 :root {
-  --floor-height: clamp(44px, 10vh, 72px);
+  --floor-height: clamp(76px, 16vh, 118px);
 }
 
 body {
@@ -21,6 +21,7 @@ body {
   color: #e8e0d0;
 }
 
+.bonus-screen,
 .intro-screen1,
 .intro-screen2,
 .start-game-screen,
@@ -37,14 +38,80 @@ body {
   height: clamp(360px, 65dvh, 620px);
 }
 
-.intro-screen1,
-.intro-screen2,
-.gameover-screen,
-.win-screen {
+.bonus-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bonus-video-wrapper {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bonus-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border-radius: 6px;
+}
+
+.bonus-next-btn {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.intro-screen1,
+.intro-screen2 {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.intro-speaker {
+  position: absolute;
+  bottom: clamp(16px, 4vh, 32px);
+  width: clamp(64px, 12vw, 120px);
+  height: clamp(64px, 12vw, 120px);
+  border-radius: 50%;
+  border: 2px solid #ffd166;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.55);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.intro-speaker-left {
+  left: clamp(16px, 4vw, 36px);
+}
+
+.intro-speaker-right {
+  right: clamp(16px, 4vw, 36px);
+}
+
+.intro-speaker img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .intro-screen1 h1,
@@ -53,24 +120,46 @@ body {
 }
 
 .start-game-screen {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-
 .gameover-screen {
-  display: flex;
+  display: none;
   background-image: url("./images/deanhell.png");
   background-size: cover;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
+  overflow: hidden;
 }
 
+.win-screen {
+  display: none;
+  background-image: url("./images/Heaven.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.win-screen h1 {
+  color: #fff8e7;
+  background-color: rgba(12, 12, 16, 0.72);
+  border: 2px solid #ffd166;
+  border-radius: 8px;
+  padding: 10px 24px;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 18px rgba(0, 0, 0, 0.85);
+}
 
 .start-game-screen h1 {
   font-size: clamp(1.5rem, 4vw, 2.75rem);
@@ -95,6 +184,29 @@ body {
   border-radius: 50%;
   border: 2px solid #8b1a1a;
   bottom: clamp(16px, 6vh, 62px);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.choice img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.choice:hover {
+  transform: scale(1.05);
+  border-color: #ffd166;
+}
+
+.choice.selected {
+  border-color: #ffd166;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.75);
 }
 
 #choice1 {
@@ -118,15 +230,80 @@ body {
   border-radius: 6px;
 }
 
-.game-screen,
-.gameover-screen,
-.win-screen {
-  display: flex;
+.scores-hud {
+  position: absolute;
+  top: clamp(10px, 2.5vh, 20px);
+  right: clamp(12px, 3vw, 24px);
+  z-index: 10;
+  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+  color: #ff6b6b;
+  background-color: rgba(12, 12, 16, 0.75);
+  border: 1px solid #8b1a1a;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.ammo-hud {
+  position: absolute;
+  top: clamp(10px, 2.5vh, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+  color: #ffd166;
+  background-color: rgba(12, 12, 16, 0.75);
+  border: 1px solid #8b1a1a;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.ammo-hud.empty {
+  color: #888888;
+  border-color: #444444;
+}
+
+.invulnerable {
+  filter: drop-shadow(0 0 8px #ffd166) drop-shadow(0 0 16px #ffd166);
+  animation: shield-blink 0.4s infinite alternate;
+}
+
+@keyframes shield-blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+.game-screen {
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding: 0;
+  backdrop-filter: none;
+  background-color: #0c0c10;
+  background-image: none;
+}
+
+.game-screen::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background-image: url("./images/BackgroundGame.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2.5px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.game-screen > * {
+  z-index: 1;
 }
 
 .floor {
@@ -135,7 +312,7 @@ body {
   left: 0;
   width: 100%;
   height: var(--floor-height);
-  background-color: lightgreen;
+  background-color: transparent;
 }
 
 button {
@@ -146,14 +323,6 @@ button {
   border: 2px solid #e8e0d0;
   padding: clamp(6px, 1vh, 10px) clamp(14px, 2.5vw, 24px);
   cursor: pointer;
-}
-
-.intro-screen2,
-.start-game-screen,
-.game-screen,
-.gameover-screen,
-.win-screen {
-  display: none;
 }
 
 @media (max-width: 600px) {

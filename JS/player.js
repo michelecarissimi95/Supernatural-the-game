@@ -1,8 +1,8 @@
 class Player {
-  constructor() {
+  constructor(name) {
     this.gameScreen = document.querySelector(".game-screen");
     this.element = document.createElement("div");
-    this.image = "images/Dean.png";
+    this.image = `images/${name}.png`;
     this.isJumping = false;
 
     this.element.style.position = "absolute";
