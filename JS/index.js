@@ -320,6 +320,25 @@ function startNewGame() {
       if (!isGameActive) break;
       if (hit) continue;
 
+      for (let k = bobbies.length - 1; k >= 0; k--) {
+        if (areTouching(bullet, bobbies[k])) {
+          bobbies[k].element.remove();
+          bobbies.splice(k, 1);
+          bullet.element.remove();
+          bullets.splice(b, 1);
+          lives -= 1;
+          renderLives();
+          if (lives <= 0) {
+            endGame();
+          }
+          hit = true;
+          break;
+        }
+      }
+
+      if (!isGameActive) break;
+      if (hit) continue;
+
       if (bullet.x > gameScreen.clientWidth) {
         bullet.element.remove();
         bullets.splice(b, 1);
