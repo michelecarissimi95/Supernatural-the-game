@@ -36,7 +36,7 @@ This project was developed with AI assistance for UI/styling suggestions, debugg
 | AI Assistant | Adding a restart button using `window.location.reload()` at the end of the game | Suggested wiring restart buttons on `#gameover-screen` and `#win-screen` to reload the page cleanly. |
 | AI Assistant | Improving contrast/readability of `YOU WIN` over `Heaven.png` | Suggested `text-shadow` and styling adjustments on `.win-screen h1` over the bright background. |
 | AI Assistant | README and project guidelines review | Helped organize documentation and verify alignment with project requirements. |
-| AI Assistant | Adjusted the speed of enemy| Explained and guided me to the use of clamp() for screen adaptability | Helped organize documentation and verify alignment with project requirements. |
+| AI Assistant | Adjusted the speed of enemy| Explained and guided me to the use of clamp() for screen adaptability and huds | Helped organize documentation and verify alignment with project requirements. |
 
 ## Agile & Workflow Notes (Retrospective)
 - **What went well:** Breaking the game into separate JS files (`player.js`, `enemy.js`, `bobby.js`, `bullet.js`, `collision.js`, `heaven.js`, `index.js`) made debugging and adding features like invulnerability and the Heaven screen much clearer.
