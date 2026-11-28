@@ -20,6 +20,7 @@ const WIN_SCORE = 100;
 const POINTS_PER_ENEMY = 10;
 const INVULNERABLE_TIME = 5000;
 const SHOOT_COOLDOWN = 600;
+const AMMO_RECHARGE_TIME = 60000;
 
 const gameMusic = new Audio("./audio/SupernaturalTheme.mp3");
 gameMusic.loop = true;
@@ -36,10 +37,12 @@ let lastShotTime = 0;
 let lives = MAX_LIVES;
 let ammo = MAX_AMMO;
 let score = 0;
+let highScore = loadHighScore();
 let spawnTimer = null;
 let bobbySpawnTimer = null;
 let invulnerableTimer = null;
 let loopIntervalId = null;
+let ammoTimer = null;
 let isGameActive = false;
 let isInvulnerable = false;
 
@@ -64,6 +67,22 @@ function showScreen(targetScreen) {
   }
   if (targetScreen) {
     targetScreen.style.display = "flex";
+  }
+}
+
+function loadHighScore() {
+  try {
+    return Number(localStorage.getItem("supernaturalHighScore")) || 0;
+  } catch (error) {
+    return 0;
+  }
+}
+
+function saveHighScore() {
+  try {
+    localStorage.setItem("supernaturalHighScore", highScore);
+  } catch (error) {
+    console.log("Could not save high score:", error);
   }
 }
 
@@ -99,7 +118,7 @@ scoresHud.className = "scores-hud";
 gameScreen.appendChild(scoresHud);
 
 function renderScore() {
-  scoresHud.textContent = `Score: ${score}`;
+  scoresHud.textContent = `Score: ${score} | Best: ${highScore}`;
 }
 
 function renderLives() {
@@ -121,6 +140,10 @@ function addScore(points) {
   if (!isGameActive) return;
 
   score += points;
+  if (score > highScore) {
+    highScore = score;
+    saveHighScore();
+  }
   renderScore();
 
   if (score >= WIN_SCORE) {
@@ -180,6 +203,7 @@ function endGame() {
   clearInterval(loopIntervalId);
   stopInvulnerability();
   gameMusic.pause();
+  clearInterval(ammoTimer);
   const hellImage = selectedCharacter === "sam" ? "SamHell.png" : "deanhell.png";
   gameOverScreen.style.backgroundImage = `url("./images/${hellImage}")`;
   showScreen(gameOverScreen);
@@ -192,6 +216,7 @@ function winGame() {
   clearInterval(loopIntervalId);
   stopInvulnerability();
   gameMusic.pause();
+  clearInterval(ammoTimer);
   if (typeof heavenPage !== "undefined" && heavenPage) {
     heavenPage.show();
   } else {
@@ -262,6 +287,7 @@ function startNewGame() {
   clearTimeout(spawnTimer);
   clearTimeout(bobbySpawnTimer);
   clearInterval(loopIntervalId);
+  clearInterval(ammoTimer);
   clearEnemies();
   clearBullets();
   clearBobbies();
@@ -286,6 +312,12 @@ function startNewGame() {
   gameMusic.currentTime = 0;
   gameMusic.play();
   isGameActive = true;
+
+  ammoTimer = setInterval(() => {
+    if (!isGameActive) return;
+    ammo = MAX_AMMO;
+    renderAmmo();
+  }, AMMO_RECHARGE_TIME);
 
   spawnEnemies();
   bobbySpawnTimer = setTimeout(spawnBobby, randomBetween(6000, 10000));
