@@ -21,6 +21,10 @@ const POINTS_PER_ENEMY = 10;
 const INVULNERABLE_TIME = 5000;
 const SHOOT_COOLDOWN = 600;
 
+const gameMusic = new Audio("./audio/SupernaturalTheme.mp3");
+gameMusic.loop = true;
+gameMusic.volume = 0.4;
+
 const characterChoices = [choice1, choice2].filter(Boolean);
 let player;
 const enemies = [];
@@ -175,6 +179,7 @@ function endGame() {
   clearTimeout(bobbySpawnTimer);
   clearInterval(loopIntervalId);
   stopInvulnerability();
+  gameMusic.pause();
   showScreen(gameOverScreen);
 }
 
@@ -184,6 +189,7 @@ function winGame() {
   clearTimeout(bobbySpawnTimer);
   clearInterval(loopIntervalId);
   stopInvulnerability();
+  gameMusic.pause();
   if (typeof heavenPage !== "undefined" && heavenPage) {
     heavenPage.show();
   } else {
@@ -257,6 +263,9 @@ function startNewGame() {
   clearEnemies();
   clearBullets();
   clearBobbies();
+  if (player && player.element) {
+    player.element.remove();
+  }
   player = selectedCharacter === "sam" ? new Player("Sam") : new Player("Dean");
   stopInvulnerability();
 
@@ -272,6 +281,8 @@ function startNewGame() {
 
   showScreen(gameScreen);
   player.syncToViewport(true);
+  gameMusic.currentTime = 0;
+  gameMusic.play();
   isGameActive = true;
 
   spawnEnemies();
@@ -439,13 +450,13 @@ if (startGameButton) {
 
 if (restartGameOverButton) {
   restartGameOverButton.addEventListener("click", () => {
-    window.location.reload();
+    showScreen(startGameScreen);
   });
 }
 
 if (restartWinButton) {
   restartWinButton.addEventListener("click", () => {
-    window.location.reload();
+    showScreen(startGameScreen);
   });
 }
 
