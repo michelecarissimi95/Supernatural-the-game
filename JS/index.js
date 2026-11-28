@@ -233,7 +233,10 @@ function handlePlayerHit(enemyIndex) {
   }
   enemies.splice(enemyIndex, 1);
 
-  if (isInvulnerable) return;
+  if (isInvulnerable) {
+    addScore(POINTS_PER_ENEMY);
+    return;
+  }
 
   lives -= 1;
   renderLives();
