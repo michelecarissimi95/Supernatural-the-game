@@ -180,6 +180,8 @@ function endGame() {
   clearInterval(loopIntervalId);
   stopInvulnerability();
   gameMusic.pause();
+  const hellImage = selectedCharacter === "sam" ? "SamHell.png" : "deanhell.png";
+  gameOverScreen.style.backgroundImage = `url("./images/${hellImage}")`;
   showScreen(gameOverScreen);
 }
 
